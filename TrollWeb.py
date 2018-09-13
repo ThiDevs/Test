@@ -16,10 +16,6 @@ time.sleep(2)
 limit = 250
 for i in range(1,limit,1):
 
-    if i % 2 == 1:
-        driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]').send_keys(str(i) )
-    else:
-        driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]').send_keys(
-            str(i) + 'Eu amo o Lucas')
+    driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]').send_keys("Mensagem "+str(i)+" : Eu sou idiota hue" )
     driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[3]').click()
 

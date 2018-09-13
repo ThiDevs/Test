@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--disable-infobars");
@@ -37,8 +39,11 @@ for element in elements:
         print(id)
         element.find_element_by_xpath('//*[@id="'+id+'"]/td[3]').click()
         name = element.find_element_by_xpath('//*[@id="document-description-'+id+'"]').text + '.old'
-        element.find_element_by_xpath('// *[ @ id = "dropdown_navigation_'+id+'"] / span').click()
-        e
+        elemento = element.find_element_by_xpath('//*[@id="'+id+'"]/td[11]/div/div[1]/div[6]')
+        ActionChains(driver) \
+            .key_down(Keys.SPACE) \
+            .key_up(Keys.SPACE) \
+            .perform()
 
 
         time.sleep(2)
