@@ -5,8 +5,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--disable-infobars");
-chrome_options.add_argument("start-maximized");
+chrome_options.add_argument("--disable-infobars")
+chrome_options.add_argument("start-maximized")
 
 path = "C:\\Users\\thiago.alves\\Desktop\\chromedriver.exe"
 driver = webdriver.Chrome(executable_path=path,chrome_options=chrome_options)

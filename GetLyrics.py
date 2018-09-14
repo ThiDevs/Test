@@ -1,4 +1,8 @@
 import requests
+import SearchYT as Yt
+import time
+inicio = time.time()
+
 
 url = "https://api.vagalume.com.br/search.artmus"
 
@@ -10,7 +14,6 @@ headers = {
     }
 
 response = requests.request("GET", url, headers=headers, params=querystring)
-
 import json
 
 data = json.loads(response.text)
@@ -23,7 +26,20 @@ for i in range(len(data['response']['docs'])):
         pass
 
 i = int(input("Selecione a música para ver a letra: "))-1
-print(data['response']['docs'][i]['title'] + ' - ' + data['response']['docs'][i]['band'])
+Title = data['response']['docs'][i]['title'] + ' - ' + data['response']['docs'][i]['band']
+print(Title)
+Yt.argparser.add_argument("--q", help="Search term", default="Instumental "+ Title)
+Yt.argparser.add_argument("--max-results", help="Max results", default=5)
+args = Yt.argparser.parse_args()
+
+try:
+    import threading
+    t = threading.Thread(target=Yt.youtube_search, args=(args,))
+    t.start()
+
+except Yt.a.errors.HttpError as e:
+    print("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
+
 id = data['response']['docs'][i]['id']
 
 url = "https://api.vagalume.com.br/search.php"
@@ -39,3 +55,6 @@ response = requests.request("GET", url, headers=headers, params=querystring)
 
 data = json.loads(response.text)
 print(data["mus"][0]['text'])
+
+fim = time.time()
+print(fim - inicio)

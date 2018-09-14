@@ -3,7 +3,7 @@
 import apiclient as b
 import apiclient as a
 from oauth2client.tools import argparser
-
+id = []
 DEVELOPER_KEY = "AIzaSyDGRbEc7qbGJ59Vsv68fL0aHml1FYpX_1g"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
@@ -32,15 +32,24 @@ def youtube_search(options):
     elif search_result["id"]["kind"] == "youtube#playlist":
       playlists.append("%s (%s)" % (search_result["snippet"]["title"],
                                     search_result["id"]["playlistId"]))
-
+  print()
+  print("Instrumental: ")
   print ("Videos:\n", "\n".join(videos), "\n")
+  setId(videos)
   #print ("Channels:\n", "\n".join(channels), "\n")
   #print ("Playlists:\n", "\n".join(playlists), "\n")
 
+def setId(ID):
+  global id
+  id = ID
+
+def getId():
+    global id
+    return id
 
 if __name__ == "__main__":
-  argparser.add_argument("--q", help="Search term", default="Instumental Rap Lord")
-  argparser.add_argument("--max-results", help="Max results", default=5)
+  #argparser.add_argument("--q", help="Search term", default="Instumental Rap Lord")
+  #argparser.add_argument("--max-results", help="Max results", default=5)
   args = argparser.parse_args()
 
   try:
