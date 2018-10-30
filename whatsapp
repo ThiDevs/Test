@@ -1,0 +1,13 @@
+from selenium import webdriver
+import time
+options = webdriver.ChromeOptions() 
+options.add_argument("user-data-dir=C:\\Users\\thiago.alves.EXTRABOM\\AppData\\Local\\Google\\Chrome\\User Data\Default") #Path to your chrome profile
+driver = webdriver.Chrome(chrome_options=options)
+driver.get("https://web.whatsapp.com/")
+try:   
+    time.sleep(10)
+    driver.find_element_by_css_selector("#pane-side > div > div > div > div:nth-child(1) > div > div > div._3j7s9 > div._2FBdJ").click()
+    time.sleep(3)
+    driver.close()
+except Exception:
+    driver.close()
